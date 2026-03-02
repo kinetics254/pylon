@@ -44,14 +44,7 @@ This happens when:
 
 ### Step 1: Generate the Key
 
-You (or an admin panel) run:
-
-```php
-$service->generate(
-    \'ESS\',                          // app_name
-    [\'config:read\']                 // scopes
-);
-```
+Go to https://pylon-ui.on-forge.com and generate an API key for the application you are building (The API key will only be shown once so copy it and store it in your frontend\'s .env). You can also create configurations for specific companies through the admin panel :
 
 What the System does:
 
