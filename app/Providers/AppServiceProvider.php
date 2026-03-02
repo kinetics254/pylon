@@ -7,6 +7,7 @@ use Dedoc\Scramble\Support\Generator\OpenApi;
 use Dedoc\Scramble\Support\Generator\SecurityRequirement;
 use Dedoc\Scramble\Support\Generator\SecurityScheme;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -36,5 +37,17 @@ class AppServiceProvider extends ServiceProvider
                     'bearer' => [],
                 ]);
             });
+
+        // Allow access to Scramble docs in production/staging
+        Gate::define('viewApiDocs', function ($user = null) {
+            // Option 1: Allow everyone (only if you want public API docs)
+            return true;
+
+            // Option 2: Allow only specific users (Recommended)
+            // return in_array($user->email['admin@example.com']);
+
+            // Option 3: Allow only in non-production environments
+            // return !App::environment('production');
+        });
     }
 }
