@@ -41,7 +41,7 @@ class ConfigController extends Controller
             $company = Company::where('company_id', $companyId)->first();
 
             if (! $company) {
-                    return response()->json(['message' => 'company id not found in our records. Contact info@kinetics.co.ke to get onboarded'], 400);
+                    return response()->json(['message' => 'company id not found in our records. Contact info@kinetics.co.ke to get onboarded'], 404);
                 }
             $apiKeyRecord->update(['last_used_at' => now()]);
             $appId = $apiKeyRecord->id;
